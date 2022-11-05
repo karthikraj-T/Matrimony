@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="model"
+            type="com.example.matrimony.model.Profile" />
+
+        <variable
+            name="isGalleryViewEnabled"
+            type="boolean" />
+
+        <variable
+            name="myClickListener"
+            type="com.example.matrimony.MyClickListener" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_margin="10dp"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardUseCompatPadding="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:paddingBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:imgRes="@{model.imageName}"
+                android:onClick="@{(v) -> myClickListener.showGalleryView()}"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/shortlist"
+                android:background="@drawable/icon_background"
+                android:src="@drawable/ic_baseline_star_border_24"
+                android:tint="@color/white"
+                app:layout_constraintRight_toLeftOf="@id/more"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/more"
+                android:layout_margin="10dp"
+                android:tint="@color/white"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:background="@drawable/icon_background"
+                android:src="@drawable/ic_baseline_more_vert_24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/back"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_baseline_arrow_back_24"
+                android:onClick="@{(v) -> myClickListener.goBack()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/verified"
+                android:text="@string/verified"
+                android:drawableStart="@drawable/ic_baseline_verified_user_24"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image"
+                android:padding="5dp"
+                android:textColor="@color/blue"
+                android:textAllCaps="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/profileName"
+                android:padding="8dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="@{model.name}"
+                app:layout_constraintTop_toBottomOf="@+id/verified"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/age"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="@{@string/age_description_format(model.age, model.height, model.location, model.description)}"
+                app:layout_constraintTop_toBottomOf="@+id/profileName"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/chatNow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_baseline_chat_24"
+                android:drawablePadding="10dp"
+                android:padding="8dp"
+                android:text="@string/chart_now"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/age" />
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/gallery"
+                android:background="#40000000"
+                android:visibility="@{isGalleryViewEnabled ? View.VISIBLE: View.GONE}"
+                android:clipToPadding="false"
+                android:clipChildren="false"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/close"
+                android:src="@drawable/ic_baseline_close_24"
+                android:onClick="@{(v) -> myClickListener.closeGalleryView()}"
+                android:visibility="@{isGalleryViewEnabled ? View.VISIBLE: View.GONE}"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/gallery"
+                android:layout_marginTop="120dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

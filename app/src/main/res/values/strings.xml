@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Matrimony</string>
+    <string name="list_view">List View</string>
+    <string name="photo_view">Photo View</string>
+    <string name="not_interest">Not Interested</string>
+    <string name="send_interest">Send Interest</string>
+    <string name="verified">Verified</string>
+    <string name="like_profile">Like her profile?</string>
+    <string name="chart_now">Chat Now</string>
+    <string name="shortlist">Shortlist</string>
+    <string name="age_format">%1$s Yrs, %2$s</string>
+    <string name="age_description_format">%1$s Yrs, %2$s, %3$s, %4$s</string>
+    <string name="msg_interest">Request Send..</string>
+    <string name="msg_not_interest">Profile Removed</string>
+    <string name="profile_view">Profile View</string>
+</resources>

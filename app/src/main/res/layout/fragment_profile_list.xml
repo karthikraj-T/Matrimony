@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="model"
+            type="com.example.matrimony.viewmodels.ProfileListViewModel" />
+        <variable
+            name="myAdapter"
+            type="com.example.matrimony.adapter.ProfileListAdapter" />
+        <variable
+            name="myClickListener"
+            type="com.example.matrimony.MyClickListener" />
+        <variable
+            name="isListView"
+            type="boolean" />
+        <variable
+            name="isProgressEnable"
+            type="boolean" />
+        <variable
+            name="matchCount"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/profile_count"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/filter"
+            android:text="@{matchCount}"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textAlignment="center"
+            android:padding="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filter"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/profile_count"
+            android:text="@string/profile_view"
+            android:drawableEnd="@{isListView ? @drawable/ic_baseline_view_module_24 : @drawable/ic_baseline_format_list_bulleted_24 }"
+            android:onClick="@{(v) -> myClickListener.listView()}"
+            android:textSize="15sp"
+            android:textAlignment="center"
+            android:padding="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/profile_list"
+            app:layout_constraintTop_toBottomOf="@+id/profile_count"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:visibility="@{isProgressEnable ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
