@@ -95,9 +95,8 @@ class ProfileListFragment : Fragment() , MyClickListener {
 
     override fun listView() {
         isListView = !isListView
-        profileList.clear()
         count =0
-        setDataToAdapter()
+        binding.profileList.adapter = ProfileListAdapter(requireContext(), profileList, isListView, this)
 
         binding.isListView = isListView
         binding.executePendingBindings()
